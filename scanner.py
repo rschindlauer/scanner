@@ -70,7 +70,6 @@ def create_pdf(inpattern, outfile, remove_blanks=True):
 
     listing = glob.glob(inpattern)
     for filename in listing:
-        continue
         if not is_blank_page(filename):
             cmd = list(process_cmd)
             cmd.append(filename)
@@ -102,6 +101,8 @@ def create_pdf(inpattern, outfile, remove_blanks=True):
     except subprocess.CalledProcessError, e:
         logging.error('gm convert: %s' % e.output)
         return ''
+
+    return True
 
 def scan(mode):
     global logfile
@@ -165,7 +166,7 @@ def scan(mode):
                           outfile=destfilename):
             return ''
 
-	    return destfilename
+        return destfilename
 
     else:
         print 'not supported'
